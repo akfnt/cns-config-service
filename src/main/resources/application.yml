@@ -23,6 +23,10 @@ spring:
           clone-on-start: true                            # 서비스 시작시 리모트 저장소의 복제본을 로컬에 저장
           force-pull: true                                # 로컬 저장본이 원격 저장소와 다를 경우 무조건 원격 저장소로부터 다운로드
 
+logging:
+  pattern:
+    level: "%5p [${spring.application.name},%X{trace_id},%X{span_id}]"
+
 management:
   endpoints:
     web:
