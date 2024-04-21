@@ -27,3 +27,15 @@ spec:
           env:                              # 파드로 전달되는 환경변수의 목록
             - name: BPL_JVM_THREAD_COUNT
               value: "50"
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8888
+            initialDelaySeconds: 10         # 활성 상태 확인을 시작하기 전 초기 지연 시간
+            periodSeconds: 5                # 활성 상태 정보를 가져오는 빈도
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8888
+            initialDelaySeconds: 5
+            periodSeconds: 15
